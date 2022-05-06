@@ -17,37 +17,34 @@ public class Main {
         notas.put("T", (float) 1 / 32);
         notas.put("X", (float) 1 / 64);
         Scanner ler = new Scanner(System.in);
-        String linha ;
-        boolean flag =false;
+        String linha;
+        boolean flag = false;
         int corretos = 0;
-        while (ler.hasNextLine()){
+        while (ler.hasNextLine()) {
             linha = ler.nextLine();
             if (linha.charAt(0) == '*') {
                 break;
             }
             float tempo = 0;
             for (int i = 1; i < linha.length(); i++) {
-               
+
                 if (linha.charAt(i) != '/') {
                     float hold = notas.get(String.valueOf(linha.charAt(i)));
                     tempo += hold;
-                    //System.out.println(tempo);
-                    if (tempo == 1 && !flag) {
-                        corretos += 1;
-                        flag = true;
-                    }
+                    // System.out.println(tempo);
 
                 } else {
+                    if (tempo == 1) {
+                        corretos += 1;
+                    }
                     tempo = 0;
-                    flag = false;
                 }
             }
             System.out.println(corretos);
-            corretos =  0;
-            
+            corretos = 0;
+
         }
 
-        ler.close();    
+        ler.close();
     }
-
 }
